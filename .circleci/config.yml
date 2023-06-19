@@ -19,9 +19,36 @@ jobs:
             print(f'Payload: {json.dumps(payload, indent=4)}');\
             "
 
+# Setting
 # curl --request PATCH \
 #   --url https://circleci.com/api/v2/org/fa00cb57-8b24-435e-8ca9-c2a9f062e7da/project/d601e35f-dc8a-48f9-a8c2-5e28b5bd172f/oidc-custom-claims \
-#   --header 'Circle-Token: XXXXXXXXXXX' \
+#   --header 'Circle-Token: lkjlkjlkjlkj' \
 #   --header 'content-type: application/json' \
-#   --data '{"audience":["sigstore"]}'
-# {"org_id":"fa00cb57-8b24-435e-8ca9-c2a9f062e7da","project_id":"d601e35f-dc8a-48f9-a8c2-5e28b5bd172f","audience":["sigstore"],"audience_updated_at":"2023-06-19T18:06:43.653662Z"}%
+#   --data '{"audience":["fa00cb57-8b24-435e-8ca9-c2a9f062e7da","sigstore"]}'
+
+# Removing
+# curl --request DELETE \
+#   --url "https://circleci.com/api/v2/org/fa00cb57-8b24-435e-8ca9-c2a9f062e7da/project/d601e35f-dc8a-48f9-a8c2-5e28b5bd172f/oidc-custom-claims?claims=audience" \
+#   --header 'Circle-Token: lkjlkjlkjlkj'
+
+# JWT:...
+# Header: {
+#     "alg": "RS256",
+#     "kid": "BQRWU1_R-dPV-FfyNeqDRDWx-GTDZ6oiiMJShFiwpS79INkzFErvHIQyyQzIMoUGxzWr0ENnfxR0ME5XPOAtPg",
+#     "typ": "JWT"
+# }
+# Payload: {
+#     "aud": [
+#         "fa00cb57-8b24-435e-8ca9-c2a9f062e7da",
+#         "sigstore"
+#     ],
+#     "exp": 1687201860,
+#     "iat": 1687198260,
+#     "iss": "https://oidc.circleci.com/org/fa00cb57-8b24-435e-8ca9-c2a9f062e7da",
+#     "oidc.circleci.com/context-ids": [],
+#     "oidc.circleci.com/project-id": "d601e35f-dc8a-48f9-a8c2-5e28b5bd172f",
+#     "oidc.circleci.com/ssh-rerun": false,
+#     "oidc.circleci.com/vcs-origin": "github.com/boost-sandbox/circleci-oidc",
+#     "oidc.circleci.com/vcs-ref": "refs/heads/main",
+#     "sub": "org/fa00cb57-8b24-435e-8ca9-c2a9f062e7da/project/d601e35f-dc8a-48f9-a8c2-5e28b5bd172f/user/c44b1dc6-0309-4d23-948e-d8ae1ba44082/vcs-origin/github.com/boost-sandbox/circleci-oidc/vcs-ref/refs/heads/main"
+# }
