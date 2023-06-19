@@ -6,5 +6,7 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Print CIRCLE_OIDC_TOKEN_V2
-          command: echo $CIRCLE_OIDC_TOKEN_V2
+          name: Print first part of CIRCLE_OIDC_TOKEN_V2
+          command: |
+            IFS='.' read -ra PARTS <<< "$CIRCLE_OIDC_TOKEN_V2"
+            echo ${PARTS[0]}.${PARTS[1]}
