@@ -10,11 +10,11 @@ jobs:
           command: |
             python -c "\
             import os, base64, json;\
-            token_no_sig = os.environ['CIRCLE_OIDC_TOKEN_V2'].split('.')[0:2];\
-            header = json.loads(base64.urlsafe_b64decode(token_no_sig[0].ljust((len(token_no_sig[0]) + 3) // 4 * 4, '=')));\
-            payload = json.loads(base64.urlsafe_b64decode(token_no_sig[1].ljust((len(token_no_sig[1]) + 3) // 4 * 4, '=')));\
-            print('Header:');\
-            print(json.dumps(header, indent=4));\
-            print('Payload:');\
-            print(json.dumps(payload, indent=4));\
+            id_token = os.environ['CIRCLE_OIDC_TOKEN_V2']
+            parts = id_token.split('.');\
+            header = json.loads(base64.urlsafe_b64decode(parts[0]));\
+            payload = json.loads(base64.urlsafe_b64decode(parts[1]));\
+            print(f'JWT: {id_token}')
+            print(f'Header: {json.dumps(header, indent=4)}');\
+            print(f'Payload: {json.dumps(payload, indent=4)}');\
             "
