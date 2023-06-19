@@ -12,8 +12,8 @@ jobs:
             import os, base64, json;\
             id_token = os.environ['CIRCLE_OIDC_TOKEN_V2']
             parts = id_token.split('.');\
-            header = json.loads(base64.urlsafe_b64decode(parts[0]));\
-            payload = json.loads(base64.urlsafe_b64decode(parts[1]));\
+            header = json.loads(base64.urlsafe_b64decode(parts[0].ljust((len(parts[0]) + 3) // 4 * 4, '=')));\
+            payload = json.loads(base64.urlsafe_b64decode(parts[1].ljust((len(parts[1]) + 3) // 4 * 4, '=')));\
             print(f'JWT: {id_token}')
             print(f'Header: {json.dumps(header, indent=4)}');\
             print(f'Payload: {json.dumps(payload, indent=4)}');\
