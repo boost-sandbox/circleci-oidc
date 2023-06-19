@@ -8,8 +8,7 @@ jobs:
       - run:
           name: Pretty print parts of CIRCLE_OIDC_TOKEN_V2
           command: |
-            TOKEN_NO_SIG=${CIRCLE_OIDC_TOKEN_V2%.*}
-            echo $TOKEN_NO_SIG | IFS='.' read -ra PARTS
+            echo $CIRCLE_OIDC_TOKEN_V2 | IFS='.' read -ra PARTS
             HEADER=$(echo -n ${PARTS[0]} | base64 --decode | jq .)
             PAYLOAD=$(echo -n ${PARTS[1]} | base64 --decode | jq .)
             echo "Header:"
