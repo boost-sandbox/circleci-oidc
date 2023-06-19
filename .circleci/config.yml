@@ -6,7 +6,13 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Print first part of CIRCLE_OIDC_TOKEN_V2
+          name: Pretty print parts of CIRCLE_OIDC_TOKEN_V2
           command: |
             TOKEN_NO_SIG=${CIRCLE_OIDC_TOKEN_V2%.*}
-            echo $TOKEN_NO_SIG
+            IFS='.' read -ra PARTS <<< "$TOKEN_NO_SIG"
+            HEADER=$(echo ${PARTS[0]} | base64 --decode | python -m json.tool)
+            PAYLOAD=$(echo ${PARTS[1]} | base64 --decode | python -m json.tool)
+            echo "Header:"
+            echo "$HEADER"
+            echo "Payload:"
+            echo "$PAYLOAD"
