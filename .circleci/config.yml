@@ -8,5 +8,5 @@ jobs:
       - run:
           name: Print first part of CIRCLE_OIDC_TOKEN_V2
           command: |
-            echo $CIRCLE_OIDC_TOKEN_V2 | IFS='.' read -ra PARTS
-            echo ${PARTS[0]}.${PARTS[1]}
+            TOKEN_NO_SIG=${CIRCLE_OIDC_TOKEN_V2%.*}
+            echo $TOKEN_NO_SIG
