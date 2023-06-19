@@ -19,6 +19,10 @@ jobs:
             print(f'Payload: {json.dumps(payload, indent=4)}');\
             "
 
+
+# arrrrrrg
+# https://github.com/sigstore/fulcio/issues/591
+
 # Setting
 # curl --request PATCH \
 #   --url https://circleci.com/api/v2/org/fa00cb57-8b24-435e-8ca9-c2a9f062e7da/project/d601e35f-dc8a-48f9-a8c2-5e28b5bd172f/oidc-custom-claims \
