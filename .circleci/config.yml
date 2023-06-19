@@ -1,0 +1,10 @@
+version: 2.1
+jobs:
+  build:
+    docker:
+      - image: circleci/python:3.7
+    steps:
+      - checkout
+      - run:
+          name: Print CIRCLE_OIDC_TOKEN_V2
+          command: echo $CIRCLE_OIDC_TOKEN_V2
