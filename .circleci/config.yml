@@ -9,9 +9,9 @@ jobs:
           name: Pretty print parts of CIRCLE_OIDC_TOKEN_V2
           command: |
             TOKEN_NO_SIG=${CIRCLE_OIDC_TOKEN_V2%.*}
-            IFS='.' read -ra PARTS <<< "$TOKEN_NO_SIG"
-            HEADER=$(echo ${PARTS[0]} | base64 --decode | python -m json.tool)
-            PAYLOAD=$(echo ${PARTS[1]} | base64 --decode | python -m json.tool)
+            echo $TOKEN_NO_SIG | IFS='.' read -ra PARTS
+            HEADER=$(echo -n ${PARTS[0]} | base64 --decode | python -m json.tool)
+            PAYLOAD=$(echo -n ${PARTS[1]} | base64 --decode | python -m json.tool)
             echo "Header:"
             echo "$HEADER"
             echo "Payload:"
